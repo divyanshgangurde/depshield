@@ -1,0 +1,9 @@
+# Demo manifest: looks like a normal tutorial project.
+# DepShield should flag the old pinned versions (published advisories
+# exist for them in OSV), the typosquat, and the unpinned line.
+requests==2.19.1
+urllib3==1.24.2
+django==2.2.0
+colourama==0.4.6
+flask
+python-dateutil==2.8.2

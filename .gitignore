@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Local data snapshots (built by scripts/fetch_data.py, too large for git)
+data/osv/
+data/*.zip
+data/osv_index.json
+data/popular_*.json
+!data/.gitkeep

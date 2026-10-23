@@ -1,0 +1,1 @@
+{"dependencies":{"express":"^4.17.1","lodahs":"1.0.0","lodash":"4.17.15"},"devDependencies":{"typescript":"~5.0.0"},"name":"demo-app","version":"1.0.0"}
