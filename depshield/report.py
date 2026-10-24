@@ -53,6 +53,7 @@ def render_json(findings: list[Finding], scanned: int) -> str:
                     "title": f.title,
                     "detail": f.detail,
                     "advisory_id": f.advisory.id if f.advisory else None,
+                    "aliases": (f.advisory.aliases if f.advisory else []),
                     "fixed_versions": (
                         f.advisory.fixed_versions if f.advisory else []
                     ),

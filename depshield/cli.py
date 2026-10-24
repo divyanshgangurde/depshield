@@ -18,6 +18,7 @@ import sys
 from rich.console import Console
 
 from .models import Finding
+from .osv.dedupe import dedupe_advisories
 from .osv.index import OsvIndex
 from .osv.matcher import is_vulnerable
 from .parsers import parse_manifest
@@ -60,13 +61,22 @@ def run(manifest: str, data_dir: str) -> list[Finding]:
             continue
 
         if index is not None:
-            for adv in index.advisories_for(dep.ecosystem, dep.key):
+            advisories = dedupe_advisories(
+                index.advisories_for(dep.ecosystem, dep.key)
+            )
+            for adv in advisories:
                 if is_vulnerable(dep.version, adv, dep.ecosystem):
+                    detail = ""
+                    if adv.aliases:
+                        detail = (
+                            "Also tracked as: " + ", ".join(adv.aliases)
+                        )
                     findings.append(
                         Finding(
                             dependency=dep,
                             kind="vuln",
                             title=f"{adv.id}: {adv.summary}",
+                            detail=detail,
                             advisory=adv,
                         )
                     )

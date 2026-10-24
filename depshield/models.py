@@ -36,6 +36,9 @@ class Advisory:
     # [{"introduced": "0"}, {"fixed": "2.20.0"}, ...]
     ranges: list[dict] = field(default_factory=list)
     severity: str | None = None
+    # Other record IDs merged into this one by dedupe (same CVE under a
+    # different source ID, e.g. the PYSEC record of a GHSA advisory).
+    aliases: list[str] = field(default_factory=list)
 
     @property
     def fixed_versions(self) -> list[str]:

@@ -134,6 +134,11 @@ Re-run `fetch_data.py` whenever you want fresher advisories.
   names and may flag rare legitimate lookalikes; it suggests, never blocks.
 - npm version-range matching uses simplified semver; full npm range
   semantics are on the roadmap.
+- Duplicate advisories (the same GHSA indexed under multiple affected
+  entries, or a GHSA + its PYSEC mirror) are merged by advisory ID and by
+  identical summary text, with folded IDs shown as aliases. Summary-based
+  merging is a heuristic — without per-record CVE aliases it can, in rare
+  cases, fold two genuinely distinct advisories that share a summary.
 
 ## Roadmap
 
